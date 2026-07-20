@@ -3,14 +3,25 @@
 import { useState } from "react";
 import GenerateButton from "./GenerateButton";
 
-export default function PromptForm() {
+interface PromptFormProps {
+  setTitles: (titles: string[]) => void;
+}
+
+export default function PromptForm({
+  setTitles,
+}: PromptFormProps) {
   const [description, setDescription] = useState("");
   const [type, setType] = useState("Landing Page");
 
   function handleSubmit() {
-    console.log("Description:", description);
-    console.log("Type:", type);
-  }
+
+  setTitles([
+    "Título generado 1",
+    "Título generado 2",
+    "Título generado 3",
+  ]);
+
+}
 
   return (
     <div className="space-y-6">

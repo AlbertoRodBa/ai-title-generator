@@ -1,7 +1,12 @@
+"use client";
+
+import { useState } from "react";
 import PromptForm from "@/components/PromptForm";
 import TitleList from "@/components/TitleList";
 
 export default function Home() {
+  const [titles, setTitles] = useState<string[]>([]);
+
   return (
     <main className="min-h-screen bg-slate-100">
       <div className="mx-auto max-w-3xl px-6 py-12">
