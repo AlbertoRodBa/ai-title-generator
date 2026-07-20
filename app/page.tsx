@@ -18,7 +18,7 @@ export default function Home() {
         </div>
 
         <div className="mt-10">
-          <TitleList />
+          <TitleList titles={[]} />
         </div>
       </div>
     </main>
