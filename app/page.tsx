@@ -19,11 +19,11 @@ export default function Home() {
         </p>
 
         <div className="mt-10">
-          <PromptForm />
+          <PromptForm setTitles={setTitles} />
         </div>
 
         <div className="mt-10">
-          <TitleList titles={[]} />
+          <TitleList titles={titles} />
         </div>
       </div>
     </main>

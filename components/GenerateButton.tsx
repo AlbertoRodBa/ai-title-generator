@@ -4,6 +4,10 @@ interface GenerateButtonProps {
   onClick: () => void;
 }
 
+interface GenerateButtonProps {
+  onClick: () => void;
+}
+
 export default function GenerateButton({
   onClick,
 }: GenerateButtonProps) {
