@@ -13,14 +13,26 @@ export default function PromptForm({
   const [description, setDescription] = useState("");
   const [type, setType] = useState("Landing Page");
 
-  function handleSubmit() {
+  async function handleSubmit() {
+  try {
+    const response = await fetch("/api/generate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        description,
+        type,
+      }),
+    });
 
-  setTitles([
-    "Título generado 1",
-    "Título generado 2",
-    "Título generado 3",
-  ]);
+    const data = await response.json();
 
+    setTitles(data.titles);
+
+  } catch (error) {
+    console.error(error);
+  }
 }
 
   return (
