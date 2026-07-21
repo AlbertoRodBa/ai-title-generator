@@ -5,6 +5,8 @@ const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY!,
 });
 
+const model = process.env.GEMINI_MODEL ?? "gemini-3.5-flash-lite";
+
 export async function POST(request: Request) {
   try {
     const { description, type } = await request.json();
@@ -26,7 +28,7 @@ Return only the titles, one per line.
 `;
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-pro",
+      model,
       contents: prompt,
     });
 
