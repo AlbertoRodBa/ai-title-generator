@@ -28,7 +28,9 @@ export default function PromptForm({
 
     const data = await response.json();
 
-    setTitles(data.titles);
+console.log(data);
+
+setTitles(data.titles ?? []);
 
   } catch (error) {
     console.error(error);

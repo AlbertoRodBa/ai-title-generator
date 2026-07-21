@@ -9,17 +9,24 @@ export async function POST(request: Request) {
   try {
     const { description, type } = await request.json();
 
+    if (!description || !type) {
+      return NextResponse.json(
+        { error: "Missing description or content type." },
+        { status: 400 }
+      );
+    }
+
     const prompt = `
-      Generate 3 engaging ${type} titles.
+Generate 3 engaging ${type} titles.
 
-      Content:
-      ${description}
+Content:
+${description}
 
-      Return only the titles, one per line.
-    `;
+Return only the titles, one per line.
+`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-2.5-pro",
       contents: prompt,
     });
 
@@ -33,10 +40,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ titles });
 
   } catch (error) {
-    console.error(error);
+    console.error("Gemini API error:", error);
 
     return NextResponse.json(
-      { error: "Failed to generate titles." },
+      {
+        error:
+          error instanceof Error
+            ? error.message
+            : "Something went wrong with Gemini API.",
+      },
       { status: 500 }
     );
   }
